@@ -33,6 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
                 dispatchTakePictureIntent();
             }
         });
+        Log.e(TAG, "In function: onCreate");
         Intent fromMain = getIntent();
 
         emailEditText.setText( fromMain.getStringExtra("EMAIL"));
