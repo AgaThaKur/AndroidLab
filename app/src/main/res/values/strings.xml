@@ -9,4 +9,11 @@
     <string name="switchOn"> switch on/off</string>
     <string name="enter_here">Enter Name Here</string>
     <string name="onswitch"> The switch is now on</string>
+    <string name="main_activity"> Main Activity</string>
+    <string name="email">Enter Your email</string>
+    <string name="password">Enter your password</string>
+    <string name="login">Login</string>
+    <string name="picture">Take picture</string>
+    <string name="profile_activity">Profile Activity</string>
+    <string name="name">Enter your name</string>
 </resources>

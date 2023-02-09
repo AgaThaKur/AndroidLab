@@ -10,4 +10,12 @@
     <string name="switchOn">allumer / éteindre</string>
     <string name="enter_here">Entrez le nom ici</string>
     <string name="onswitch">L’interrupteur est maintenant activé</string>
+    <string name="main_activity"> Activité principale</string>
+    <string name="profile_activity">Activité du profil</string>
+    <string name="name">Entrez votre nom</string>
+    <string name="picture">Prendre une photo</string>
+    <string name="email">Entrer votre Email</string>
+    <string name="password">tapez votre mot de passe</string>
+    <string name="login">connexion</string>
+
 </resources>
