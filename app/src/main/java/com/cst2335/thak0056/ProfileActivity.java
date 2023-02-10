@@ -37,6 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
         Intent fromMain = getIntent();
 
         emailEditText.setText( fromMain.getStringExtra("EMAIL"));
+        Log.e(TAG,"EMAIL: " + fromMain.getStringExtra("EMAIL"));
     }
 
     private void dispatchTakePictureIntent() {
