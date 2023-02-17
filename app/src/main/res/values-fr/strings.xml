@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AndroidLabs</string>
+    <string name="app_name">AndroidLabs Lab 4</string>
     <string name="hello_message">Bonjour!</string>
     <string name="button_text">je suis un bouton</string>
     <string name="toast_message">Voici Plus d’informations</string>
@@ -11,11 +11,16 @@
     <string name="enter_here">Entrez le nom ici</string>
     <string name="onswitch">L’interrupteur est maintenant activé</string>
     <string name="main_activity"> Activité principale</string>
-    <string name="profile_activity">Activité du profil</string>
+    <string name="your_profile">votre profil</string>
     <string name="name">Entrez votre nom</string>
     <string name="picture">Prendre une photo</string>
     <string name="email">Entrer votre Email</string>
     <string name="password">tapez votre mot de passe</string>
     <string name="login">connexion</string>
+    <string name="address">Adresse</string>
+    <string name="save_data">Enregistrer des données</string>
+    <string name="clear_data">Effacer les données</string>
+
+
 
 </resources>

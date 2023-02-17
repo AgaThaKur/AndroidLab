@@ -8,90 +8,70 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
-    public static final String TAG = "PROFILE_ACTIVITY";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Button but = findViewById(R.id.button);
+        Button clear = findViewById(R.id.clear);
         TextView emailEditText = findViewById(R.id.emailpa);
+        EditText name = findViewById(R.id.emailP);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        EditText address = findViewById(R.id.address);
+
+        Intent fromMain = getIntent();
+        emailEditText.setText(fromMain.getStringExtra("EMAIL"));
+
         but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dispatchTakePictureIntent();
+              String nam = name.getText().toString();
+              String add = address.getText().toString();
+
+              SharedPreferences shred = getSharedPreferences("data", MODE_PRIVATE);
+              SharedPreferences.Editor editor = shred.edit();
+
+              editor.putString("namee", nam);
+              editor.putString("adrs", add);
+              editor.apply();
             }
         });
-        Log.e(TAG, "In function: onCreate");
-        Intent fromMain = getIntent();
 
-        emailEditText.setText( fromMain.getStringExtra("EMAIL"));
-        Log.e(TAG,"EMAIL: " + fromMain.getStringExtra("EMAIL"));
-    }
+        SharedPreferences getshared = getSharedPreferences("data", MODE_PRIVATE);
+        String na = getshared.getString("namee","save name");
+        String ad = getshared.getString("adrs","save address");
 
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            myPictureTakerLauncher.launch(takePictureIntent);
-        }
-    }
+        name.setText(na);
+        address.setText(ad);
 
-    ActivityResultLauncher<Intent> myPictureTakerLauncher = registerForActivityResult(
 
-            new ActivityResultContracts.StartActivityForResult()
-            ,new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    ImageView imgView = findViewById(R.id.imageView);
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-                        Bitmap imgbitmap = (Bitmap) data.getExtras().get("data");
-                        imgView.setImageBitmap(imgbitmap);
-                    }
-                    else if(result.getResultCode() == Activity.RESULT_CANCELED)
-                        Log.i(TAG, "User refused to capture a picture.");
-                }
-            } );
-    @Override
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences shred = getSharedPreferences("data", MODE_PRIVATE);
+                SharedPreferences.Editor editor = shred.edit();
+                address.setText(null);
+                name.setText(null);
+                editor.putString("namee", "");
+                editor.putString("adrs", "");
+                editor.apply();
 
-    protected void onStart() {
-        super.onStart();
-        Log.e(TAG, "In function: onStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.e(TAG, "In function: onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.e(TAG, "In function: onPause");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.e(TAG, "In function: onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.e(TAG, "In function: onDestroy");
-}
-
-}
+            }
+        });
+    }}
