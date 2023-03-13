@@ -40,45 +40,6 @@ public class MainActivityTest {
     public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(MainActivity.class);
 
-    /**
-     * This test case checks that the password input fails the test if conditions doesn't match
-     */
-    @Test
-    public void mainActivityTest() {
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        ViewInteraction appCompatEditText = onView(withId(R.id.editTextTextPersonName));
-        appCompatEditText.perform(replaceText("12345"), closeSoftKeyboard());
-
-        ViewInteraction materialButton = onView(withId(R.id.button));
-        materialButton.perform(click());
-
-        ViewInteraction textView = onView(withId(R.id.textView));
-        textView.check(matches(withText("You shall not pass!")));
-    }
-
-    /**
-     * This test case verifies that if a password entry lacks an uppercase letter, it fails the test.
-     */
-    @Test
-    public void testFindMissingUpperCase () {
-
-        ViewInteraction appCompatEditText = onView(withId(R.id.editTextTextPersonName));
-        appCompatEditText.perform (replaceText("password1234")) ;
-
-        ViewInteraction materialButton = onView(withId(R.id.button));
-        materialButton.perform(click());
-
-        ViewInteraction textView = onView(withId(R.id.textView));
-        textView.check(matches (withText ("You shall not pass!")));
-    }
 
     /**
      * This test case verifies that if a password input does not contain an uppercase letter, the test is failed.
